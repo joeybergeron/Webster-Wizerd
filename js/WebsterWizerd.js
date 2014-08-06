@@ -73,15 +73,7 @@ WebsterWizerd.prototype.showResults = function(word) {
 
             // blindly grab the first definition entry
             var definitionEntry = definitionData.entry_list.entry[0];
-<<<<<<< HEAD
-<<<<<<< HEAD
-            var thesaurusEntries = _.filter(thesaurusData.entry_list.entry, function(entry) {
-                return entry.fl['#text'] === definitionEntry.fl['#text'];
-            })
-            var thesaurusEntry = thesaurusEnties[0];
 
-            // console.log(JSON.stringify(thesaurusEntry));
-=======
             // matches every item in the thesaurus to the definition entry,
             // comparing the word type or functional use (a.k.a. "noun")
             // stores result as an array
@@ -90,17 +82,6 @@ WebsterWizerd.prototype.showResults = function(word) {
             });
             // select first filtered item, or set as undefined
             var thesaurusEntry = thesaurusEntries[0];
->>>>>>> upstream/master
-=======
-            // matches every item in the thesaurus to the definition entry,
-            // comparing the word type or functional use (a.k.a. "noun")
-            // stores result as an array
-            var thesaurusEntries = _.filter(thesaurusData.entry_list.entry, function(entry) {
-                return entry.fl['#text'] === definitionEntry.fl['#text'];
-            });
-            // select first filtered item, or set as undefined
-            var thesaurusEntry = thesaurusEntries[0];
->>>>>>> upstream/master
 
             // create JS template functions from HTML
             var templatingFunctionDictionary = _.template(dictionaryTemplateResults);
@@ -112,18 +93,9 @@ WebsterWizerd.prototype.showResults = function(word) {
                 templatingFunctionDictionary(definitionEntry)
             );
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             // find .thesaurus-destination in HTML and write thesaurus template
             // and data to write presentation to DOM,
             // and if no thesaurus data, clear the container
->>>>>>> upstream/master
-=======
-            // find .thesaurus-destination in HTML and write thesaurus template
-            // and data to write presentation to DOM,
-            // and if no thesaurus data, clear the container
->>>>>>> upstream/master
             if (thesaurusEntry) {
                 $('.thesaurus-destination').html(
                     templatingFunctionThesaurus(thesaurusEntry)
