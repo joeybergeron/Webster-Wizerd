@@ -48,39 +48,72 @@ WebsterWizerd.prototype.getThesaurus = function(word) {
     );
 }
 
-// put the definition template and data onto the page
+// showResults() is a prototype function which:
+//
+// - accepts a single argument, the word to search for, and passes it to our data requests
+// - loads templates and data for dictionary and thesaurus APIs
+// - places resulting elements on the DOM
 WebsterWizerd.prototype.showResults = function(word) {
+    //- $.when is a promise statement that collects the data as promise objects
+    // - promise objects don't return in the same order
+    // - If a promise object doesn't resolve, $.then() doesn't run
+    // - $.when() collects and .then() processes them
+    // - jQuery passes the promise objects in order to the function in line 76
     $.when(
         this.getDefinition(word),
         this.getTemplate('./templates/dictionary-definition.html'),
         this.getThesaurus(word),
         this.getTemplate('./templates/thesaurus-synonyms.html')
     ).then(
-        function(definitionData, dictionaryTemplateResults, thesaurusData, synonymTemplateResults) { // is passed to here
+        //-After the promises are successfully passed to $.then(), it pipes the results to the function on line 76
+        //-The function is passed 4 objects; 1 dictionary data, 1 thesaurus data, and a template for each
+        //
 
+        function(definitionData, dictionaryTemplateResults, thesaurusData, synonymTemplateResults) {
+
+            // blindly grab the first definition entry
             var definitionEntry = definitionData.entry_list.entry[0];
-            var thesaurusEntry = _.filter(thesaurusData.entry_list.entry, function(entry) {
+<<<<<<< HEAD
+            var thesaurusEntries = _.filter(thesaurusData.entry_list.entry, function(entry) {
                 return entry.fl['#text'] === definitionEntry.fl['#text'];
             })
+            var thesaurusEntry = thesaurusEnties[0];
 
             // console.log(JSON.stringify(thesaurusEntry));
+=======
+            // matches every item in the thesaurus to the definition entry,
+            // comparing the word type or functional use (a.k.a. "noun")
+            // stores result as an array
+            var thesaurusEntries = _.filter(thesaurusData.entry_list.entry, function(entry) {
+                return entry.fl['#text'] === definitionEntry.fl['#text'];
+            });
+            // select first filtered item, or set as undefined
+            var thesaurusEntry = thesaurusEntries[0];
+>>>>>>> upstream/master
 
-            ///... combine HTML and templates
+            // create JS template functions from HTML
             var templatingFunctionDictionary = _.template(dictionaryTemplateResults);
             var templatingFunctionThesaurus = _.template(synonymTemplateResults);
 
+            // find .dictionary-destination in HTML and use dictionary template
+            // and data to write presentation to DOM
             $('.dictionary-destination').html(
                 templatingFunctionDictionary(definitionEntry)
             );
 
-            if (thesaurusEntry.length) {
+<<<<<<< HEAD
+=======
+            // find .thesaurus-destination in HTML and write thesaurus template
+            // and data to write presentation to DOM,
+            // and if no thesaurus data, clear the container
+>>>>>>> upstream/master
+            if (thesaurusEntry) {
                 $('.thesaurus-destination').html(
-                    templatingFunctionThesaurus(thesaurusEntry[0])
+                    templatingFunctionThesaurus(thesaurusEntry)
                 );
             } else {
                 $('.thesaurus-destination').html('');
             }
-
         }
     )
 }
@@ -134,7 +167,7 @@ WebsterWizerd.prototype.handleEvents = function() {
 window.onload = app;
 
 function app() {
-    var thesaurus_key = '070ba04d-4a8a-4e5b-be08-218c72522083';
-    var dictionary_key = '8af24765-6a55-49b7-bec0-e84f6dc7a277';
+    var thesaurus_key = 'ed5d677b-202f-488d-984d-88bb50d16ad3';
+    var dictionary_key = 'ee250deb-92d7-412c-a508-d83b60b7d0fc';
     wizerd = new WebsterWizerd(dictionary_key, thesaurus_key);
 }
