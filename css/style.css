@@ -1,17 +1,54 @@
 *, *:after, *:before {
     box-sizing: border-box;
-    transition: all .25s ease;
+  	font-family: 'Roboto';	    
+/*    transition: all .25s ease;*/
 }
-
 /* ---------------- container section */
-
-.container {
-	max-width: 800px;
-	margin: 0 auto;
-}
-
-/* ---------------- header section */
-
-.header {
+h1 {
+	padding: 50px 0px;
+	color: rgb(245, 245, 245);
+	font-weight: 100;
+	font-style: italic;
+	font-size: 5em;
 	text-align: center;
+}
+#charlie {
+	display: inline-block;
+	font-size: 2em;
+	font-weight: 100;
+	font-style: italic;
+}
+.searchButton {
+	display: inline-block;
+	vertical-align: top;	
+	font-size: 1.7em;
+	font-weight: 100;
+	padding: 2px 20px;
+	margin-left: 10px;
+}
+.container {
+	padding-top: 100px;
+	background-color: rgb(4, 48, 113);
+}
+/* ---------------- header section */
+.header {
+	max-width: 800px;
+	text-align: center;
+	margin: 50px auto;
+}
+/* ---------------- content */
+.dictionary-destination {
+	max-width: 700px;
+	margin: 100px auto;
+}
+.thesaurus-destination {
+	max-width: 700px;
+	margin: 50px auto;
+	margin-bottom: 100px;
+}
+/* ---------------- footer */
+footer {
+	text-align: center;
+	font-weight: 100;
+	font-style: italic;
 }

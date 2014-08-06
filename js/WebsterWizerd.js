@@ -11,7 +11,6 @@ function WebsterWizerd(dictionary_key, thesaurus_key) {
     this.thesaurus_url = "/thesaurus/";
     this.thesaurus_key = thesaurus_key;
     this.handleEvents();
-    console.log("You're a Wizerd, 'Harry!");
 }
 
 // gets the definition XML over the network ($.get())
@@ -126,7 +125,7 @@ WebsterWizerd.prototype.handleEvents = function() {
     $('.container').on('submit', 'form', function(event) {
         event.preventDefault();
         if (charlie.value === "") {
-            alert("NO CHARLES NO");
+            alert("Enter a serachable word.");
             return;
         }
         self.showResults(charlie.value)
