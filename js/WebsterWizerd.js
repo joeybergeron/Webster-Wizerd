@@ -131,7 +131,7 @@ WebsterWizerd.prototype.handleEvents = function() {
         self.showResults(charlie.value)
     })
 
-    $('.container').on('click', '.sound-button', function() {
+    $('.dictionary-destination').on('click', '.sound-button', function() {
         var prefix = "http://media.merriam-webster.com/soundc11/";
         var url = this.getAttribute("url");
         var audio_url = prefix + url.charAt(0) + '/' + url;
