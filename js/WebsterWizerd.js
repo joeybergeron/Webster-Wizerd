@@ -128,7 +128,7 @@ WebsterWizerd.prototype.handleEvents = function() {
             alert("Enter a serachable word.");
             return;
         }
-        self.showResults(charlie.value)
+        location.hash = '#'+charlie.value;
     })
 
     $('.dictionary-destination').on('click', '.sound-button', function() {
@@ -143,7 +143,27 @@ WebsterWizerd.prototype.handleEvents = function() {
     })
 }
 
+//     ____              __
+//    / __ \____  __  __/ /____  _____
+//   / /_/ / __ \/ / / / __/ _ \/ ___/
+//  / _, _/ /_/ / /_/ / /_/  __/ /
+// /_/ |_|\____/\__,_/\__/\___/_/
 
+var Router = Backbone.Router.extend({
+    wizerd: new WebsterWizerd(
+        '8af24765-6a55-49b7-bec0-e84f6dc7a277', 
+        '070ba04d-4a8a-4e5b-be08-218c72522083'
+    ),
+
+    routes: {
+        ":someword": "search"
+    },
+
+    search: function(word){
+        this.wizerd.showResults(word);
+    }
+
+});
 
 //                              __  _                               __
 //   ___  _  _____  _______  __/ /_(_)___  ____     _________  ____/ /__
@@ -155,7 +175,10 @@ WebsterWizerd.prototype.handleEvents = function() {
 window.onload = app;
 
 function app() {
-    var thesaurus_key = 'ed5d677b-202f-488d-984d-88bb50d16ad3';
-    var dictionary_key = 'ee250deb-92d7-412c-a508-d83b60b7d0fc';
-    wizerd = new WebsterWizerd(dictionary_key, thesaurus_key);
+    var myRouter = new Router();
+    if (!Backbone.history.start()) {
+        myRouter.navigate("", {
+            trigger: true
+        });
+    }
 }
