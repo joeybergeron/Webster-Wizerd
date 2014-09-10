@@ -1,3 +1,6 @@
+Using the Merriam - Webster API, which happens to be XML, and converting it into JSON data so that it can be useable through backbonejs & lodash templating. 
+
+
 # How to use your server
 1. clone / copy the files (server.js, package.json, Procfile) to your computer or project folder
 2. `npm init`
